@@ -1,15 +1,11 @@
-// INCLUDES (requires JQuery)
-$(document).ready(function() {
-	JQuery.getScript("player.js");
-});
-
 /**
  * Starts the game
  */
 function startGame() {
     myGameArea.start();
 
-    myPlayer = new Player(24, 32, "lightblue", 20, 233);
+    myPlayer = new Player(24, 32, "red", 0, 0);
+    myPlayer.render(myGameArea.context);
 }
 
 /**

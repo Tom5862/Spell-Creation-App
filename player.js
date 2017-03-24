@@ -12,5 +12,6 @@ function Player(width, height, startX, startY, color) {
 	this.render = function(context) {
 		context.fillStyle = this.color;
 		context.fillRect(this.x, this.y, this.width, this.height);
+		console.log("yes");
 	};
 }
