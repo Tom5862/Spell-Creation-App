@@ -1,4 +1,4 @@
-function Player(width, height, startX, startY, color) {
+function Player(startX, startY, width, height, color) {
 	this.width = width;
 	this.height = height;
 	this.x = startX;
@@ -12,6 +12,5 @@ function Player(width, height, startX, startY, color) {
 	this.render = function(context) {
 		context.fillStyle = this.color;
 		context.fillRect(this.x, this.y, this.width, this.height);
-		console.log("yes");
 	};
 }

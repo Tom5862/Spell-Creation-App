@@ -1,23 +1,32 @@
+var player;
+
 /**
  * Starts the game
  */
 function startGame() {
-    myGameArea.start();
+    player = new Player(10, 120, 24, 32, "red");
 
-    myPlayer = new Player(24, 32, "red", 0, 0);
-    myPlayer.render(myGameArea.context);
+    gameScreen.init();
+}
+
+function render() {
+    gameScreen.clearScreen();
+    player.render(gameScreen.context);
 }
 
 /**
- * Game Canvas - instantiate with myGameArea.start()
+ * main view object - instantiate with GameScreen.init()
  */
-var myGameArea = {
+var gameScreen = {
     canvas : document.createElement("canvas"),
-    start : function() {
+    init : function() {
         this.canvas.width = 480;
         this.canvas.height = 270;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        console.log("Loaded canvas.");
+        this.redrawTimer = setInterval(render, 20);
+    },
+    clearScreen: function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
