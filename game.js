@@ -1,7 +1,7 @@
 var player;
 
-/**
- * Starts the game
+/*
+ * Initializes the game
  */
 function startGame() {
     player = new Player(10, 120, 24, 32, "red");
@@ -9,19 +9,25 @@ function startGame() {
     gameScreen.init();
 }
 
+/*
+ * Updates game objects that need updated
+ */
 function update() {
     player.update(gameInput.inputs);
 
     render();
 }
 
+/*
+ * Redraws the game canvas
+ */
 function render() {
     gameScreen.clearScreen();
     player.render(gameScreen.context);
 }
 
-/**
- * main view object - instantiate with GameScreen.init()
+/*
+ * Main view object - instantiate with GameScreen.init()
  */
 var gameScreen = {
     canvas : document.createElement("canvas"),
@@ -37,25 +43,35 @@ var gameScreen = {
     }
 }
 
+/*
+ * Manages the key press states for the game's inputs - instantiate with gameInput.init()
+ *
+ * ** When adding new keyboard controls to the game, add them to gameInput.inputs **
+ *
+ * Access key pressed state with:
+ *      gameInput.inputs.<input>.isDown()
+ */
 var gameInput = {
+    /*
+     * Mapping of the game's user control inputs to their respective keycodes
+     */
     inputs : {
         left : new Input([37, 65, 100]),
         right : new Input([39, 68, 102]),
         up : new Input([38, 87, 104]),
         down : new Input([40, 83, 98]),
     },
+    /*
+     * Sets up the game for keyboard input
+     */
     init : function() {
         window.addEventListener('keydown', function(e) {
             for (key in gameInput.inputs) {
+                // check each key if it contains the pressed keycode
                 if (gameInput.inputs[key].keycodes.indexOf(e.keyCode) != -1) {
                     gameInput.inputs[key].setDown();
                 }
             }
-            // gameInput.inputs.values().forEach(function() {
-            //     if (this.keycodes.indexOf(e.key) != -1) {
-            //         this.setDown();
-            //     }
-            // });
         });
         window.addEventListener('keyup', function(e) {
             for (key in gameInput.inputs) {
@@ -63,27 +79,36 @@ var gameInput = {
                     gameInput.inputs[key].setUp();
                 }
             }
-            // gameInput.inputs.values().forEach(function() {
-            //     if (this.keycodes.indexOf(e.key) != -1) {
-            //         this.setUp();
-            //     }
-            // });
         });
     }
 }
 
+/*
+ * Input
+ *
+ * Holds pressed state of keyboard keys
+ *      keycodes: a list of integers that equate to the key codes that trigger the Input
+ */
 function Input(keycodes) {
     this.state = false;
     this.keycodes = keycodes;
-
+    /*
+     * Returns the current state of this Input
+     *      true = pressed
+     *      false = not pressed
+     */
     this.isDown = function() {
         return this.state;
     }
-
+    /*
+     * Sets this Input to a pressed state
+     */
     this.setDown = function() {
         this.state = true;
     }
-
+    /*
+     * Sets this Input to an unpressed state
+     */
     this.setUp = function() {
         this.state = false;
     }

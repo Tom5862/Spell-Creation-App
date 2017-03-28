@@ -1,3 +1,8 @@
+/*
+ * Player
+ *
+ * The player object constructor
+ */
 function Player(startX, startY, width, height, color) {
 	this.width = width;
 	this.height = height;
@@ -5,6 +10,9 @@ function Player(startX, startY, width, height, color) {
 	this.y = startY;
 	this.color = color;
 
+	/*
+	 * Updates the player's state based on keyboard inputs
+	 */
 	this.update = function(keyboardInputs) {
 		console.log("update");
 		if (keyboardInputs.left.isDown()) {
@@ -25,9 +33,9 @@ function Player(startX, startY, width, height, color) {
 		}
 	}
 
-	/**
-	 * render function draws this Player to the specified context
-	 * context - the context of a canvas
+	/*
+	 * Draws this Player to the specified context
+	 * 		context: the context of a canvas
 	 */
 	this.render = function(context) {
 		context.fillStyle = this.color;
