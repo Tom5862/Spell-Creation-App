@@ -41,7 +41,7 @@ var gameScreen = {
     clearScreen: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-}
+};
 
 /*
  * Manages the key press states for the game's inputs - instantiate with gameInput.init()
@@ -81,7 +81,7 @@ var gameInput = {
             }
         });
     }
-}
+};
 
 /*
  * Input
@@ -99,17 +99,17 @@ function Input(keycodes) {
      */
     this.isDown = function() {
         return this.state;
-    }
+    };
     /*
      * Sets this Input to a pressed state
      */
     this.setDown = function() {
         this.state = true;
-    }
+    };
     /*
      * Sets this Input to an unpressed state
      */
     this.setUp = function() {
         this.state = false;
-    }
+    };
 }

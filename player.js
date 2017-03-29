@@ -31,7 +31,7 @@ function Player(startX, startY, width, height, color) {
 			this.y += 2;
 			console.log("down");
 		}
-	}
+	};
 
 	/*
 	 * Draws this Player to the specified context
